@@ -1,3 +1,4 @@
+
 # 🎬 IMDb Analytics & Recommendation Platform
 
 ## 📌 Project Overview
@@ -131,6 +132,11 @@ All files uploaded successfully
 - `.gitignore` used to exclude sensitive files
 
 ---
+## Project Structure
+
+src/   → Python ingestion scripts  
+sql/   → Snowflake SQL (staging, dimensions, facts)  
+docs/  → Architecture and notes  
 
 ## 📈 Future Enhancements
 
@@ -141,13 +147,6 @@ All files uploaded successfully
 - Analytics dashboards (Power BI / Tableau)
 - Content-based recommendation engine
 
----
-
-## 🧠 Resume Description
-
-> Built an end-to-end cloud data ingestion pipeline using Python and AWS S3 to process IMDb public datasets. Implemented automated uploads using boto3, designed a raw data lake structure, and followed cloud security and data engineering best practices. The pipeline serves as the foundation for analytics and recommendation workloads using Snowflake.
-
----
 
 ## 👤 Author
 **Manichandra Domala**
