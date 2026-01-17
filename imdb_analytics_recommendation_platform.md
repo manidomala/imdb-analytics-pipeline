@@ -17,9 +17,9 @@ Python + boto3
         ↓
 AWS S3 (Raw Data Layer)
         ↓
-Snowflake (next phase)
+Snowflake 
         ↓
-Analytics & Recommendation Engine
+Analytics & Recommendation Engine (Next Phase)
 ```
 
 ---
