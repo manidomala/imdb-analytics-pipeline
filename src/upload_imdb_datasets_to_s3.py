@@ -1,41 +1,44 @@
-import boto3
+"""
+Upload IMDb datasets from local filesystem to AWS S3.
+
+This script:
+- Scans a local directory for IMDb CSV files
+- Uploads them to an S3 bucket under a raw/ prefix
+- Overwrites existing files (full refresh pattern)
+
+Used as part of an end-to-end data pipeline.
+"""
+
 import os
-from botocore.exceptions import ClientError
+import boto3
 
-# AWS S3 setup
-s3 = boto3.client("s3")
-bucket_name = "imdb-analytics-data-2025"  # your bucket
-local_folder = "/Users/manichandradomala/Desktop/imdb_datasets"
-s3_folder = "raw/"
+# ========================
+# CONFIGURATION
+# ========================
 
-# Step 1: Create bucket if it doesn't exist
-try:
-    existing_buckets = [b['Name'] for b in s3.list_buckets()['Buckets']]
-    if bucket_name not in existing_buckets:
-        # Special case for us-east-1
-        region = "us-east-1"
-        if region == "us-east-1":
-            s3.create_bucket(Bucket=bucket_name)
-        else:
-            s3.create_bucket(
-                Bucket=bucket_name,
-                CreateBucketConfiguration={'LocationConstraint': region}
-            )
-        print(f"Bucket '{bucket_name}' created successfully!")
-    else:
-        print(f"Bucket '{bucket_name}' already exists.")
-except ClientError as e:
-    print("Bucket creation error:", e)
+LOCAL_DATA_DIR = "/Users/manichandradomala/Desktop/imdb_project/imdb_datasets"
+S3_BUCKET = "imdb-analytics-data-2025"
+S3_PREFIX = "raw/"
 
-# Step 2: Upload files
-for file_name in os.listdir(local_folder):
-    if file_name.endswith(".csv"):
-        local_path = os.path.join(local_folder, file_name)
-        s3_key = f"{s3_folder}{file_name}"  # e.g., raw/title.basics.csv
-        try:
-            s3.upload_file(Filename=local_path, Bucket=bucket_name, Key=s3_key)
-            print(f"Uploaded: {file_name} -> s3://{bucket_name}/{s3_key}")
-        except ClientError as e:
-            print(f"Error uploading {file_name}: {e}")
+# ========================
+# S3 UPLOAD LOGIC
+# ========================
 
-print("✅ All files uploaded successfully")
+def upload_files_to_s3():
+    s3 = boto3.client("s3")
+
+    print("🚀 Uploading local IMDb datasets to S3...")
+
+    for filename in os.listdir(LOCAL_DATA_DIR):
+        if filename.endswith(".csv"):
+            local_path = os.path.join(LOCAL_DATA_DIR, filename)
+            s3_key = f"{S3_PREFIX}{filename}"
+
+            s3.upload_file(local_path, S3_BUCKET, s3_key)
+            print(f"Uploaded → s3://{S3_BUCKET}/{s3_key}")
+
+    print("✅ S3 upload completed")
+
+
+if __name__ == "__main__":
+    upload_files_to_s3()

@@ -2,10 +2,11 @@
 __pycache__/
 *.pyc
 
-# AWS credentials
+# Secrets
 .env
-.aws/
+.snowflake/
+*.p8
 
-# OS files
+# OS
 .DS_Store
-
+imdb_datasets/
