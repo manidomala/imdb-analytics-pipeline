@@ -203,6 +203,13 @@ Optimized for **Tableau Public** and other BI tools.
 
 ---
 
+## 📊 Tableau Dashboard
+Dashboard Insights
+
+- Top-rated titles and popularity
+- Ratings vs popularity (votes)
+- Rating trends over time
+
 ## 👤 Author
 
 **Manichandra Domala**  
