@@ -1,4 +1,10 @@
-## 📊 Tableau Dashboard
+## 📊 Tableau Dashboard (Public)
 
-🔗 **Live Dashboard (Tableau Public):**  
+🔗 **IMDb Analytics Dashboard – Ratings, Popularity & Genre Insights**
+
+View the interactive dashboard here (no Snowflake access required):  
 https://public.tableau.com/views/imdb_data_visualization/IMDbAnalyticsDashboardRatingsPopularityGenreInsights?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
+**Key insights covered:**
+- Top-rated IMDb titles and their popularity
+- Relationship between ratings and number of votes
+- Rating trends over time across title types (movies, TV series, episodes)
